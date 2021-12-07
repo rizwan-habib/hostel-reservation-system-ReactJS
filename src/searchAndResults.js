@@ -1,9 +1,9 @@
 import Card from "./card";
-import Nav from "./Navbar";
+import NavSearchBar from "./NavSearchBar";
 function SearchAndResultPage() {
     return (
         <div>
-            <Nav/>
+            <NavSearchBar/>
             <div class="container">
                 <div class="row">
                     <Card/>
