@@ -4,6 +4,9 @@ import LoginPage from './login';
 import SetupProfilePage from './setupProfile';
 import RegisterHostelPage from './registerHostel';
 import SearchAndResultPage from "./searchAndResults";
+import RoomsAndBeds from './roomsAndBeds';
+import UpRoomsOrDelHostel from './upRoomsAndDelHostel';
+
 
 function App() {
   return (
@@ -21,6 +24,12 @@ function App() {
           </Route>
           <Route path="/SearchAndResults">
             <SearchAndResultPage/>
+          </Route> 
+          <Route path="/roomsAndBeds">
+            <RoomsAndBeds/>
+          </Route>
+          <Route path= "/updateRoomsOrDeleteHostel">
+            <UpRoomsOrDelHostel/>
           </Route> 
           <Route path="/">
             <WelcomePage/>

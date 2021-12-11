@@ -1,11 +1,17 @@
 import Nav from "./Navbar"
 import Carousel from "./Carousel"
+import Header from "./header";
+import './img/hostel.jpg'
 
 function WelcomePage() {
   return (
     <div>
-      <Nav/>
-      <Carousel/>
+      <header class="header-blue">
+        <Nav/>
+        <Header/>
+      </header>
+      
+      {/* <Carousel/>
       <div class='container'>
         <div class=".col-">
           <fieldset class="border" >
@@ -24,7 +30,7 @@ function WelcomePage() {
             </p>
           </fieldset>
         </div>
-      </div>      
+      </div>       */}
     </div>
   );
 }

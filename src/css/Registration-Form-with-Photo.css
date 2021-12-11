@@ -6,7 +6,7 @@
 .register-photo .image-holder {
   display: table-cell;
   width: auto;
-  background: url(https://vistapointe.net/images/hostel-7.jpg);
+  background: url(/src/img/setupProfile.jpg);
   background-size: cover;
 }
 
