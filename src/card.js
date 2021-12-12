@@ -1,6 +1,6 @@
 import { useHistory } from "react-router";
 
-function Card() {
+function Card(props) {
     const history = useHistory();
 
     function handleSubmit(e) {
@@ -14,8 +14,8 @@ function Card() {
                 <div class="card" style={{width: "18rem"}}>
                     <img src="https://vistapointe.net/images/hostel-7.jpg" class="card-img-top" alt="..."/>
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="card-title">{props.title}</h5>
+                        <p class="card-text">{props.address}</p>
                         <a onClick={handleSubmit} class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>

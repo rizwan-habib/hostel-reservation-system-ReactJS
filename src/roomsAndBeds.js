@@ -1,6 +1,6 @@
 import { useHistory } from "react-router";
 import './css/Contact-Form-Clean.css'
-import Nav from "./Navbar";
+import NavBackResults from "./NavBackResults";
 
 function RoomsAndBeds() {
     const history = useHistory();
@@ -8,12 +8,12 @@ function RoomsAndBeds() {
     function handleSubmit(e) {
     e.preventDefault();
     alert("wait for confirmation");
-    history.push('/SearchAndResults');
-    
+    history.push('/SearchAndResults');    
     }
 
     return (
-       <div>       
+       <div>
+           <NavBackResults/>
             <section class="contact-clean">
                 <form onSubmit={handleSubmit}>
                     <h2 class="text-center">Select Room and Bed</h2>
