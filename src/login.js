@@ -27,22 +27,27 @@ function LoginPage() {
   function handleSubmit(event) {
     event.preventDefault();
     const user = {
-      "userName": userName,
+      "username": userName,
       "password": password
     };
     
     let result =  false;
 
-    axios.post(`http://localhost:8000/login`,user)
+    axios.post(`http://localhost:8008/login`,user)
     .then(res => {
         console.log(res);
         //data message now in result
-        result =res.data.message;
-        if(result)
+        result =res.data;
+        if(result.type=="resident")
         {
           history.push('/SearchAndResults');
         }
+        else if(result.type=="hostel")
+        {
+          history.push('/AddRoomDetails');
+        }
         else{
+          alert("Not Found");
           console.log("error");
         }  
       }

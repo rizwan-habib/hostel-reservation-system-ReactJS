@@ -10,50 +10,51 @@ function SetupProfilePage() {
   const [Name, setName] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordRep, setPasswordRep] = useState("");
+  const [cnic, setCNIC] = useState("");
   
   function updateName(e)
   {
     setName(e.target.value);
-    console.log(Name);
+    // console.log(Name);
   }
 
   function updateUserName(e)
   {
     setUserName(e.target.value);
-    console.log(userName);
+    // console.log(userName);
   }
 
   function updatePassword(e)
   {
     setPassword(e.target.value);
-    console.log(password);
+    // console.log(password);
   }
-  function updatePasswordRep(e)
+  function updateCNIC(e)
   {
-    setPasswordRep(e.target.value);
-    console.log(password);
+    setCNIC(e.target.value);
+    // console.log(password);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
 
     const user = {
-      "Name":Name,
-      "userName": userName,
-      "password": password
+      "name":Name,
+      "username": userName,
+      "password": password,
+      "cnic": cnic
     };
     
     let result =  false;
 
-    axios.post(`http://localhost:8000/login`,user)
+    axios.post(`http://localhost:8008/setUpProfile`,user)
     .then(res => {
         console.log(res);
         //data message now in result
-        result =res.data.message;
-        if(result)
+        result =res.data;
+        if(result=="success")
         {
-          history.push('/Login');
+          history.push('/login');
         }
         else{
           console.log("error");
@@ -87,7 +88,7 @@ function SetupProfilePage() {
                   </div>
                 </div>
                 <div class="mb-3"><input class="form-control" id = "inputPassword" onChange={updatePassword} value={password} type="password" name="password" placeholder="Password"/></div>
-                <div class="mb-3"><input class="form-control" id = "inputPasswordRep" onChange={updatePasswordRep} value={passwordRep} type="password" name="password-repeat" placeholder="Password (repeat)"/></div>
+                <div class="mb-3"><input class="form-control" id = "inputPasswordRep" onChange={updateCNIC} value={cnic} type="text" name="password-repeat" placeholder="CNIC"/></div>
                 <div class="mb-3">
                     <div class="form-check"><label class="form-check-label"><input class="form-check-input" type="checkbox"/>I agree to the license terms.</label></div>
                 </div>

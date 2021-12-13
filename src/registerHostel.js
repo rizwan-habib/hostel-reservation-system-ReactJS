@@ -8,9 +8,9 @@ function RegisterHostelPage() {
     const history = useHistory();
 
     const [hostelName, setHostelName] = useState("");
-    const [userName, setUserName] = useState("");
+    const [login, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [hostelAddr, setHostelAddr] = useState("");
+    const [address, setHostelAddr] = useState("");
     const[totalRooms,setTotalRooms] =  useState("");
     // const[totalBeds,setTotalBeds] =  useState("");
   
@@ -57,26 +57,31 @@ function RegisterHostelPage() {
         e.preventDefault();
         
         const user = {
-            "name":hostelName,
-            "userName": userName,
+            "hostelName":hostelName,
+            "login": login,
             "password": password,
-            "hostelAddr": hostelAddr,
+            "address": address,
             "totalRooms":totalRooms
         };
           
           let result =  false;
       
-          axios.post(`http://localhost:8000/login`,user)
+          axios.post(`http://localhost:8008/enterHostelDetails`,user)
           .then(res => {
               console.log(res);
               //data message now in result
-              result =res.data.message;
-              if(result)
+              result =res.data;
+              if(result=="success")
               {
                 history.push("Login");
                 
               }
-              else{
+              else if(result=="address_false"){
+                alert("Adress Already Exist")
+                console.log("error");
+              }
+              else if(result=="login_false"){
+                alert("Username Already Exist")
                 console.log("error");
               }  
             }
@@ -104,12 +109,12 @@ function RegisterHostelPage() {
                     {/* <input class="form-control" id="userNameH" onChange={updateUserName} value={userName} type="text" name="username" placeholder="User Name"/> */}
                     <div class="input-group">
                         <span class="input-group-text" id="inputGroupPrepend2">@</span>
-                        <input class="form-control" id ="inputUserName"  onChange={updateUserName} value={userName} type="text" name="text" placeholder="User Name"/>
+                        <input class="form-control" id ="inputUserName"  onChange={updateUserName} value={login} type="text" name="text" placeholder="User Name"/>
                     </div>
                 </div>
                 <div class="mb-3"><input class="form-control" id="passwordH" onChange={updatePassword} value={password} type="password" name="password" placeholder="Password"/></div>
                 {/* <div class="mb-3"><input class="form-control" id="passwordHRep" onChange={updatePasswordRep} value={passwordRep} type="password" name="password-repeat" placeholder="Password (repeat)"/></div> */}
-                <div class="mb-3"><input class="form-control" id="hostelAddr" onChange={updateHostelAddr} value={hostelAddr} type="text" name="hostel-address" placeholder="Hostel Address"/></div>
+                <div class="mb-3"><input class="form-control" id="hostelAddr" onChange={updateHostelAddr} value={address} type="text" name="hostel-address" placeholder="Hostel Address"/></div>
                 <div class="mb-3"><input class="form-control" id="totalRooms" onChange={updateTotalRooms} value={totalRooms} type="number" name="total-rooms" placeholder="Total Rooms"/></div>
                 {/* <div class="mb-3"><input class="form-control" id="totatBeds" onChange={updateTotalBeds} value={totalBeds} type="number" name="total-beds" placeholder="Total Beds"/></div> */}
                 <div class="mb-3">
