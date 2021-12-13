@@ -47,18 +47,33 @@ function SetupProfilePage() {
     
     let result =  false;
 
-    axios.post(`http://localhost:8008/setUpProfile`,user)
+    axios.post(`http://localhost:8008/login`,user)
     .then(res => {
         console.log(res);
         //data message now in result
-        result =res.data;
-        if(result=="success")
+        
+        
+        // result =res.data;
+        // if(result=="success")
+        // {
+        //   history.push('/login');
+        // }
+        // else{
+        //   console.log("error");
+        // }
+        
+        result =res.data.message;
+        if(result)
         {
           history.push('/login');
         }
         else{
           console.log("error");
-        }  
+        }
+
+
+        
+
       }
     )
     .catch(err => {

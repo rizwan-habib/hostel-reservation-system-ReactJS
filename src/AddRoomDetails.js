@@ -2,6 +2,7 @@ import { useHistory } from "react-router";
 import './css/Contact-Form-Clean.css'
 import { useState } from "react";
 import { useParams } from 'react-router-dom';
+import NavHostelMain from "./NavHostelMain";
 import axios from "axios";
 function AddRoomDetails() {
     const history = useHistory();
@@ -58,7 +59,7 @@ function AddRoomDetails() {
               
               let result =  false;
                 
-              axios.post(`http://localhost:8000/login`,user)
+              axios.post(`http://localhost:8008/login`,user)
               .then(res => {
                   console.log(res);
                   //data message now in result
@@ -84,12 +85,11 @@ function AddRoomDetails() {
 
     return (
        <div>
-
+            <NavHostelMain/>
             <section class="contact-clean">
+                
                 <form onSubmit={handleSubmit}>
-                    {/* {
-                        MyComponent()
-                    } */}
+                    
                     <h2 class="text-center">Add Room Details</h2>
                     
                     <div class="mb-3">

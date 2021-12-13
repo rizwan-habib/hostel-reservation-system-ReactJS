@@ -5,8 +5,11 @@ import SetupProfilePage from './setupProfile';
 import RegisterHostelPage from './registerHostel';
 import SearchAndResultPage from "./searchAndResults";
 import RoomsAndBeds from './roomsAndBeds';
-import UpRoomsOrDelHostel from './upRoomsAndDelHostel';
+import UpdateRooms from './updateRooms';
 import AddRoomDetails from './AddRoomDetails';
+import DelHostel from './deleteHostel';
+import HostelMain from './hostelMain';
+import RequestMessages from './requestMessages';
 
 
 function App() {
@@ -32,12 +35,21 @@ function App() {
           <Route path="/roomsAndBeds">
             <RoomsAndBeds/>
           </Route>
-          <Route path= "/updateRoomsOrDeleteHostel">
-            <UpRoomsOrDelHostel/>
+          <Route path= "/updateRooms">
+            <UpdateRooms/>
           </Route> 
           <Route path= "/AddRoomDetails">
             <AddRoomDetails/>
-          </Route> 
+          </Route>
+          <Route path= "/deleteHostel">
+            <DelHostel/>
+          </Route>
+          <Route path= "/requestMessages">
+            <RequestMessages/>
+          </Route>
+          <Route path= "/hostelMain">
+            <HostelMain/>
+          </Route>  
           <Route path="/">
             <WelcomePage/>
           </Route> 

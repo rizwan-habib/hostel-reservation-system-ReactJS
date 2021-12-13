@@ -37,19 +37,33 @@ function LoginPage() {
     .then(res => {
         console.log(res);
         //data message now in result
-        result =res.data;
-        if(result.type=="resident")
+        
+        // result =res.data;
+        // if(result.type=="resident")
+        // {
+        //   history.push('/SearchAndResults');
+        // }
+        // else if(result.type=="hostel")
+        // {
+        //   history.push('/AddRoomDetails');
+        // }
+        // else{
+        //   alert("Not Found");
+        //   console.log("error");
+        // }
+        
+        result = res.data.message;
+        if(result)
         {
-          history.push('/SearchAndResults');
-        }
-        else if(result.type=="hostel")
-        {
-          history.push('/AddRoomDetails');
+          history.push('/hostelMain');
         }
         else{
           alert("Not Found");
           console.log("error");
-        }  
+        }
+
+
+
       }
     )
     .catch(err => {

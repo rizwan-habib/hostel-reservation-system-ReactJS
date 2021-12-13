@@ -1,20 +1,19 @@
 import { useHistory } from "react-router";
 import './css/Contact-Form-Clean.css'
-import Nav from "./Navbar";
+import NavHostelMain from "./NavHostelMain";
 
 function UpRoomsOrDelHostel() {
     const history = useHistory();
 
     function handleSubmit(e) {
     e.preventDefault();
-    alert('deleted')
-    history.push('/updateRoomsOrDeleteHostel');
+    alert('updated')
+    history.push('/updateRooms');
     }
 
     return (
-        
        <div>
-           <Nav/>       
+           <NavHostelMain/>
             <section class="contact-clean">
                 <form onSubmit={handleSubmit}>
                     <h2 class="text-center">Update Room Status</h2>
@@ -48,19 +47,7 @@ function UpRoomsOrDelHostel() {
                     <div class="mb-3"><button class="btn btn-primary" type="submit">Update</button></div>
                 </form>
             </section>
-            <section class="contact-clean">
-                <form onSubmit={handleSubmit}>
-                <div class="mb-3" >
-                    <h2 class="text-center">Delete Hostel</h2>
-                    <small color="text-danger">Are you sure you want to delete the hostel? This will erase all your data from the site.To delete the
-                    hostel enter your password below:   
-                    </small><br/>
-                    <input class="form-control"  type="password" placeholder="password" ></input>
-                    <div class="mb-3"><button class="btn btn-primary" type="submit">Delete</button></div>
-                </div>
-                </form>
-            </section>
-       </div>
+        </div>
        
     );
   }
