@@ -8,6 +8,9 @@ import './fonts/ionicons.woff'
 import { useHistory } from "react-router";
 import { useState } from "react";
 import axios from "axios"
+import UserProfile from './userProfile';
+
+
 
 function LoginPage() {
   const history = useHistory();
@@ -30,7 +33,7 @@ function LoginPage() {
       "username": userName,
       "password": password
     };
-    
+    UserProfile.setName(userName);
     let result =  false;
 
     axios.post(`http://localhost:8008/login`,user)

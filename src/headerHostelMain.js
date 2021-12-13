@@ -7,7 +7,16 @@ import './fonts/fontawesome-webfont.woff'
 import './fonts/fontawesome-webfont.woff2'
 import './fonts/FontAwesome.otf'
 import screenContent from './img/hostelMain.jpg'
+import UserProfile from './userProfile';
+import HostelProfile from './hostelProfile'
+
 function HeaderHostelMain() {
+
+    /////
+    let name = UserProfile.getName();
+    console.log(name);
+    ////
+
     return (
         // <header class="header-blue">
             <div class="container hero">

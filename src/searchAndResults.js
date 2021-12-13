@@ -1,6 +1,10 @@
 import Card from "./card";
 import NavSearchBar from "./NavSearchBar";
+import UserProfile from './userProfile';
 function SearchAndResultPage() {
+
+   let name = UserProfile.getName();
+   console.log(name);
     
    const hostelTitleAndAddress = {
        "name": ["raza","awan","farook","jawan","asdasd"],
