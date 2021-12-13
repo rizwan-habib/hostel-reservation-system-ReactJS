@@ -6,10 +6,11 @@ import RegisterHostelPage from './registerHostel';
 import SearchAndResultPage from "./searchAndResults";
 import RoomsAndBeds from './roomsAndBeds';
 import UpRoomsOrDelHostel from './upRoomsAndDelHostel';
+import AddRoomDetails from './AddRoomDetails';
 
 
 function App() {
-  
+
 
 
   return (
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route path= "/updateRoomsOrDeleteHostel">
             <UpRoomsOrDelHostel/>
+          </Route> 
+          <Route path= "/AddRoomDetails">
+            <AddRoomDetails/>
           </Route> 
           <Route path="/">
             <WelcomePage/>
