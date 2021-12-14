@@ -58,7 +58,7 @@ function LoginPage() {
         result = res.data.message;
         if(result)
         {
-          history.push('/hostelMain');
+          history.push('/SearchAndResults');
         }
         else{
           alert("Not Found");

@@ -1,54 +1,133 @@
 import Card from "./card";
-import NavSearchBar from "./NavSearchBar";
 import UserProfile from './userProfile';
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
+import { useHistory } from "react-router";
+
 function SearchAndResultPage() {
 
-   let name = UserProfile.getName();
-   console.log(name);
+   const history = useHistory();
+        
+
+//    const hostel ={
+//         "hostels": [
+//             {
+//                 name: "rizwan hostel",
+//                 address: "G11 isb"
+//             },
+//             {
+//                 name: "faroq hostel",
+//                 address: "F7 isb"
+//             }
+//             ,
+//             {
+//                 name: "amjad hostel",
+//                 address: "G9 isb"
+
+//             },
+//             {
+//                 name: "rehan hostel",
+//                 address: "G8 isb"
+
+//             }
+//         ]
+//    }
     
-   const hostelTitleAndAddress = {
-       "name": ["raza","awan","farook","jawan","asdasd"],
-       "location": ["G9isb","F7isb","F6isb","G11isb"]
-   }
+
+
+
+    const [searchTerm, setSearchTerm] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+    const [filteredNames, setFilterNames] = useState([]);
     
 
-   const hostel ={
-        "hostels": [
-            {
-                name: "rizwan hostel",
-                address: "G11 isb"
-            },
-            {
-                name: "faroq hostel",
-                address: "F7 isb"
-            }
-            ,
-            {
-                name: "amjad hostel",
-                address: "G9 isb"
+    function updateSearch(e)
+    {
+    setSearchTerm(e.target.value);
+    console.log(searchTerm);
+    }
 
-            },
-            {
-                name: "rehan hostel",
-                address: "G8 isb"
 
-            }
-        ]
-   }
+    useEffect(() => {
+        
+        const user = {
+            "hostelName":searchTerm,
+        };
 
-  
+        let result =  false;
+
+        axios.post(`http://localhost:8008/login`,user)
+        .then(res => {      
+        result =res.data;
+        setSearchResults(res.data);
+        
+        }
+        )
+        .catch(err => {
+        // Do something for an error here
+        console.log("Error Reading data " + err);
+        });
+
+
+
+
+
+      }, [searchTerm]);
+
+      useEffect(() => {
+        // console.log(typeof(searchResults))
+        
+        setFilterNames(
+            Object.values(searchResults).map((val) => {
+                if(val.hostelName.toLowerCase().includes(searchTerm.toLowerCase()))
+                {
+                    return val.hostelName;
+                }
+            }) 
+        )
+        
+      }, [searchResults,searchTerm]);
   
 
     return (
         <div>
-            <NavSearchBar/>
+            {/* <NavSearchBar/>
+             */}
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                <a class="navbar-brand" href="/">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    
+                    </ul>
+                    <form class="d-flex">
+                    <input class="form-control me-2" type="search" onChange={updateSearch} value={searchTerm}  placeholder="Search" aria-label="Search"/>
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+                </div>
+            </nav>
+
             <div class="container">
                 <div class="row">
-                    {
-                        Object.values(hostel.hostels).map((val) => (
-                            <Card title={val.name} address={val.address} /> 
-                        ))   
-                    }
+                {
+                       filteredNames.map((val) => {
+
+                        if(val == searchTerm){
+                          return  <Card title={val} address={val} /> 
+                        }
+                       
+                       }
+                        ) 
+                    // Object.values(searchResults).map((val) => (
+                    //     <Card title={val.hostelName} address={val.address} /> 
+                    // ))  
+                }  
+                    
                 </div>    
             </div>
         </div>
