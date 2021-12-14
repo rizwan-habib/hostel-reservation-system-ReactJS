@@ -45,12 +45,13 @@ function SearchAndResultPage() {
     function updateSearch(e)
     {
     setSearchTerm(e.target.value);
-    console.log(searchTerm);
+    //console.log(searchTerm);
     }
 
 
     useEffect(() => {
         
+       
         const user = {
             "hostelName":searchTerm,
         };
@@ -60,6 +61,7 @@ function SearchAndResultPage() {
         axios.post(`http://localhost:8008/login`,user)
         .then(res => {      
         result =res.data;
+       
         setSearchResults(res.data);
         
         }
@@ -75,19 +77,32 @@ function SearchAndResultPage() {
 
       }, [searchTerm]);
 
+
+
       useEffect(() => {
-        // console.log(typeof(searchResults))
         
-        setFilterNames(
-            Object.values(searchResults).map((val) => {
-                if(val.hostelName.toLowerCase().includes(searchTerm.toLowerCase()))
+      const hostelnames = searchResults.map((val) => {
+
+                if(!searchTerm || searchTerm.length === 0|| searchTerm=== "" )
                 {
-                    return val.hostelName;
+                    
+                    
+                    return { hostelName : val.hostelName, address : val.address };
+                    
                 }
-            }) 
-        )
+                else if(val.hostelName.toLowerCase().includes(searchTerm.toLowerCase()))
+                {
+                    return { hostelName : val.hostelName, address : val.address };
+                }
+                return null;
+            }  
+         
+        )    
         
-      }, [searchResults,searchTerm]);
+        setFilterNames(hostelnames);
+         
+        
+      }, [searchTerm]);
   
 
     return (
@@ -114,18 +129,12 @@ function SearchAndResultPage() {
 
             <div class="container">
                 <div class="row">
+                
                 {
-                       filteredNames.map((val) => {
-
-                        if(val == searchTerm){
-                          return  <Card title={val} address={val} /> 
-                        }
                        
-                       }
-                        ) 
-                    // Object.values(searchResults).map((val) => (
-                    //     <Card title={val.hostelName} address={val.address} /> 
-                    // ))  
+                       filteredNames.map((val,index) => (
+                            !val || <Card title= {val.hostelName} address={val.address} id ={index} />
+                       )) 
                 }  
                     
                 </div>    
