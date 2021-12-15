@@ -1,12 +1,12 @@
 import { useHistory } from "react-router";
+import { useState } from "react";
+import UserProfile from './userProfile';
+import { Link } from "react-router-dom";
+
 
 function Card(props) {
+    
     const history = useHistory();
-
-    function handleSubmit(e) {
-    e.preventDefault();
-    history.push('/RoomsAndBeds');
-    }
 
     return (
        
@@ -16,11 +16,11 @@ function Card(props) {
                     <div class="card-body">
                         <h5 class="card-title">{props.title}</h5>
                         <p class="card-text">{props.address}</p>
-                        <a onClick={handleSubmit} class="btn btn-primary">Go somewhere</a>
+                        <Link  to= { {pathname: '/roomsAndBeds', state:props } }  class="btn btn-primary">Go somewhere</Link>
+                        {/*  */}
                     </div>
                 </div>
             </div>
-        
     );
   }
   

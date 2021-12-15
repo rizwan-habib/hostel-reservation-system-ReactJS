@@ -13,8 +13,8 @@ import HostelProfile from './hostelProfile'
 function HeaderHostelMain() {
 
     /////
-    let name = UserProfile.getName();
-    console.log(name);
+    // let name = UserProfile.getName();
+    
     ////
 
     return (
@@ -27,7 +27,7 @@ function HeaderHostelMain() {
                             Our Hostel management system is designed to manage all the functionalities that you dreamed.You
                             can now add hostel details , update rooms and can see request messages from users.    
                         </p>
-                        <button class="btn btn-light btn-lg action-button" type="button">Learn More</button>
+                        
                     </div>
                     <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder">
                         <div class="phone-mockup"><img class="device" src={screenContent} alt="image"/>

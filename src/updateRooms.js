@@ -1,15 +1,24 @@
 import { useHistory } from "react-router";
 import './css/Contact-Form-Clean.css'
 import NavHostelMain from "./NavHostelMain";
-
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 function UpRoomsOrDelHostel() {
     const history = useHistory();
 
+    const location = useLocation();
     function handleSubmit(e) {
     e.preventDefault();
     alert('updated')
     history.push('/updateRooms');
     }
+
+    useEffect(() => {
+    console.log(location.state)    
+
+        // Run! Like go get some data from an API.
+    }, []);
+
 
     return (
        <div>
@@ -20,17 +29,13 @@ function UpRoomsOrDelHostel() {
                     <div class="mb-3">
                         <select id="room"  class="form-control"  placeholder="Select Room" >
                             <option value="UpdateRoom">Select Room</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                            
                         </select>
                     </div>
                     <div class="mb-3">
                         <select id="bed"  class="form-control"  placeholder="Select bed" >
                             <option value="UpdateBed">Select Bed</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                            
                         </select>
                     </div>
                     <div class="mb-3">

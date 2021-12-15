@@ -7,36 +7,7 @@ import { useHistory } from "react-router";
 
 function SearchAndResultPage() {
 
-   const history = useHistory();
-        
-
-//    const hostel ={
-//         "hostels": [
-//             {
-//                 name: "rizwan hostel",
-//                 address: "G11 isb"
-//             },
-//             {
-//                 name: "faroq hostel",
-//                 address: "F7 isb"
-//             }
-//             ,
-//             {
-//                 name: "amjad hostel",
-//                 address: "G9 isb"
-
-//             },
-//             {
-//                 name: "rehan hostel",
-//                 address: "G8 isb"
-
-//             }
-//         ]
-//    }
-    
-
-
-
+    const history = useHistory();
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const [filteredNames, setFilterNames] = useState([]);
@@ -71,10 +42,6 @@ function SearchAndResultPage() {
         console.log("Error Reading data " + err);
         });
 
-
-
-
-
       }, [searchTerm]);
 
 
@@ -86,13 +53,12 @@ function SearchAndResultPage() {
                 if(!searchTerm || searchTerm.length === 0|| searchTerm=== "" )
                 {
                     
-                    
-                    return { hostelName : val.hostelName, address : val.address };
+                    return { hostelName : val.hostelName, address : val.address, hostelID: val.hostelID, rooms:val.rooms };
                     
                 }
                 else if(val.hostelName.toLowerCase().includes(searchTerm.toLowerCase()))
                 {
-                    return { hostelName : val.hostelName, address : val.address };
+                    return { hostelName : val.hostelName, address : val.address,hostelID: val.hostelID , rooms:val.rooms  };
                 }
                 return null;
             }  
@@ -107,19 +73,16 @@ function SearchAndResultPage() {
 
     return (
         <div>
-            {/* <NavSearchBar/>
-             */}
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                 <a class="navbar-brand" href="/">Home</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                 </button>
+                
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     
-                    </ul>
-                    <form class="d-flex">
+                    <form class="d-flex" >
                     <input class="form-control me-2" type="search" onChange={updateSearch} value={searchTerm}  placeholder="Search" aria-label="Search"/>
                     <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
@@ -130,10 +93,9 @@ function SearchAndResultPage() {
             <div class="container">
                 <div class="row">
                 
-                {
-                       
+                {    
                        filteredNames.map((val,index) => (
-                            !val || <Card title= {val.hostelName} address={val.address} id ={index} />
+                            !val || <Card title= {val.hostelName} address={val.address} id ={val.hostelID} rooms= {val.rooms}  />
                        )) 
                 }  
                     

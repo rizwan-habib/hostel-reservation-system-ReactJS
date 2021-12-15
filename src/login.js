@@ -16,7 +16,10 @@ function LoginPage() {
   const history = useHistory();
 
   const [userName, setUserName] = useState("");
+  const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+
+  const [data, setData] = useState([]);
   
   // useEffect(() => {
   //   axios.get(`http://localhost:8000/login`)
@@ -33,12 +36,18 @@ function LoginPage() {
       "username": userName,
       "password": password
     };
+
+    const hostelOwner = {
+    "login": login,
+    "password": password
+    };
+
     UserProfile.setName(userName);
     let result =  false;
 
     axios.post(`http://localhost:8008/login`,user)
     .then(res => {
-        console.log(res);
+        //console.log(res);
         //data message now in result
         
         // result =res.data;
@@ -55,10 +64,16 @@ function LoginPage() {
         //   console.log("error");
         // }
         
-        result = res.data.message;
+        result = res.data;
+        setData(result);
         if(result)
         {
-          history.push('/SearchAndResults');
+          history.push(
+            {
+              pathname:"/hostelMain",
+              state: { username: userName, data : result } 
+            }
+          );
         }
         else{
           alert("Not Found");

@@ -1,17 +1,16 @@
 import { useHistory } from "react-router";
 import './css/Contact-Form-Clean.css'
 import { useState } from "react";
-import { useParams } from 'react-router-dom';
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import NavHostelMain from "./NavHostelMain";
 import axios from "axios";
 function AddRoomDetails() {
     const history = useHistory();
-    // function MyComponent(){
-    // let { id } = useParams();
-    // return (<h2 class="text-center"  >Add Room {id} Details</h2>);
-    // }    
+   
+    const location = useLocation();
 
-    const [hostelID, setHostelID] = useState("");
+    const [login, setLogin] = useState("");
     const [roomNo, setRoomNo] = useState("");
     const [totalBeds, setTotalBeds] = useState("");
     const [roomType, setRoomType] = useState("");
@@ -33,24 +32,34 @@ function AddRoomDetails() {
       setFloorNo(e.target.value);
       //console.log(floorNo); 
     }
-
-    function updateRoomType(e)
-    {
-      setRoomType(e.target.value);
-      //console.log(roomType);
-    }
-
-    function updateHostelID(e)
-    {
-      setHostelID(e.target.value);
-      //console.log(roomType);
-    }
     
+    useEffect(() => {
+      console.log(location.state.data.username);  
+      setLogin(location.state.data.username);
+          // Run! Like go get some data from an API.
+    }, []);
+
+
+    function handleChange(){
+      let selector = document.getElementById("roomType");
+      let option = selector.options[selector.selectedIndex].value;
+      setRoomType(option);
+
+    }
+
+
+
+
+
+
+
     function handleSubmit(e) {
+
+
     e.preventDefault();
            
             const user = {
-                "hostelID":hostelID,
+                "login":login,
                 "roomNo": roomNo,
                 "totalBeds": totalBeds,
                 "roomType": roomType,
@@ -63,11 +72,11 @@ function AddRoomDetails() {
               .then(res => {
                   console.log(res);
                   //data message now in result
-                  result =res.data.message;
+                  result =res.data;
                   
                   if(result)
                   {
-                    
+                    alert("room details added")
                     history.push(`/AddRoomDetails`); 
                   }
                   else{
@@ -86,23 +95,20 @@ function AddRoomDetails() {
     return (
        <div>
             <NavHostelMain/>
+            
             <section class="contact-clean">
-                
                 <form onSubmit={handleSubmit}>
                     
                     <h2 class="text-center">Add Room Details</h2>
-                    
-                    <div class="mb-3">
-                        <input class="form-control" id ="inputHostelID"  onChange={updateHostelID} value={hostelID} type="number" name="text" placeholder="Hostel ID"/>
-                    </div>
                     <div class="mb-3">
                         <input class="form-control" id ="inputRoomNo"  onChange={updateRoomNo} value={roomNo} type="number" name="text" placeholder="Room No"/>
                     </div>
                     <div class="mb-3">
-                        <select id="roomType"  class="form-control"  placeholder="Select Room Type" >
-                            <option value="SelectRoom">Select Room Type</option>
-                            <option value="1">Professional</option>
-                            <option value="2">Student</option>
+                      
+                        <select id="roomType" onChange={handleChange} value={roomType} class="form-control"  placeholder="Select Room Type" >
+                            <option value="">Select Room Type</option>
+                            <option value="Professional">Professional</option>
+                            <option value="Student">Student</option>
                         </select>
                     </div>
                     <div class="mb-3">
