@@ -47,12 +47,6 @@ function AddRoomDetails() {
 
     }
 
-
-
-
-
-
-
     function handleSubmit(e) {
 
 

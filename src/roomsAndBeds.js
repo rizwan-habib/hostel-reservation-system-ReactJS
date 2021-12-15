@@ -84,15 +84,6 @@ function RoomsAndBeds() {
                             }
                         </select>
                     </div>
-                    {/* <div class="mb-3">
-                        <select id="room"  class="form-control"  placeholder="Select Room" >
-                            
-                            <option value="SelectBed">Select Bed</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
-                    </div> */}
                     <div class="mb-3"><textarea class="form-control" name="message" placeholder="Message" rows="14"></textarea></div>
                     <div class="mb-3"><button class="btn btn-primary" type="submit">Book</button></div>
                 </form>
