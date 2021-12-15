@@ -37,7 +37,7 @@ function LoginPage() {
     UserProfile.setName(userName);
     let result =  false;
 
-    axios.post(`http://localhost:8008/login`,user)
+    axios.post(`http://localhost:8001/login`,user)
     .then(res => {
         //console.log(res);
         //data message now in result
@@ -58,11 +58,20 @@ function LoginPage() {
         
         result = res.data;
         setData(result);
-        if(result)
+        if(result.type=="resident")
         {
           history.push(
             {
               pathname:"/SearchAndResults",
+              state: { username: userName, data : result} 
+            }  
+          );
+        }
+        else if(result.type=="hostel")
+        {
+          history.push(
+            {
+              pathname:"/hostelMain",
               state: { username: userName, data : result } 
             }  
           );

@@ -9,7 +9,7 @@ function Card(props) {
     const history = useHistory();
 
     return (
-       
+            
             <div class="col">
                 <div class="card" style={{width: "18rem"}}>
                     <img src="https://vistapointe.net/images/hostel-7.jpg" class="card-img-top" alt="..."/>

@@ -37,12 +37,12 @@ function DelHostel() {
         if(ownerObject[0].password===password)
         {
             const user = {
-                "login":login,
+                "hostelLogin":login
             };
               
               let result =  false;
                 
-              axios.post(`http://localhost:8008/login`,user)
+              axios.post(`http://localhost:8001/deleteHostel`,user)
               .then(res => {
                   console.log(res);
                   //data message now in result

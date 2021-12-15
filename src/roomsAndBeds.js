@@ -16,6 +16,8 @@ function RoomsAndBeds() {
     const [hostelName, setHostelName] = useState("");
     const [data, setData] = useState([]);
     const [roomNo,setRoomNo] = useState(0);
+    const [login,setlogin] = useState("");
+    const [username,setusername] = useState("");
 
     const location = useLocation();
     
@@ -32,9 +34,13 @@ function RoomsAndBeds() {
     
     
     useEffect(() => {
+        
         setHostelName(location.state.hostelName);
         setHostelAddress(location.state.address);
         setHostelId(location.state.id);
+        setlogin(location.state.login);
+        setusername(location.state.username1);
+        console.log(location.state.username1);
         // Run! Like go get some data from an API.
       }, []);
     
@@ -45,9 +51,8 @@ function RoomsAndBeds() {
         
         e.preventDefault();
         const user = {
-                "hostelName":hostelName,
-                "hostelID": hostelID,
-                "address": address,
+                "hostelLogin":login,
+                "username": username,
                 "roomNo":roomNo
             };
         
@@ -55,12 +60,12 @@ function RoomsAndBeds() {
 
        
 
-        axios.post(`http://localhost:8008/login`,user)
+        axios.post(`http://localhost:8001/bookABed`,user)
         .then(res => {      
             setData(res.data);   
 
             alert("wait for confirmation of roomNo",roomNo);
-            history.push('/SearchAndResults'); 
+            history.push('/'); 
         }
         )
         .catch(err => {

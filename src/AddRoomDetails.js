@@ -53,7 +53,7 @@ function AddRoomDetails() {
     e.preventDefault();
            
             const user = {
-                "login":login,
+                "hostelID":login,
                 "roomNo": roomNo,
                 "totalBeds": totalBeds,
                 "roomType": roomType,
@@ -62,7 +62,7 @@ function AddRoomDetails() {
               
               let result =  false;
                 
-              axios.post(`http://localhost:8008/login`,user)
+              axios.post(`http://localhost:8001/enterRoomDetails`,user)
               .then(res => {
                   console.log(res);
                   //data message now in result
