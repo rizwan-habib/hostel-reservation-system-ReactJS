@@ -73,8 +73,7 @@ function RegisterHostelPage() {
               result =res.data;
               if(result=="success")
               {
-                history.push("Login");
-                
+                history.push("/login");
               }
               else if(result=="address_false"){
                 alert("Adress Already Exist")

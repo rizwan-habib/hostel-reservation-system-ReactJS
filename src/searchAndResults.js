@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router";
+import './css/Growing-Search-Bar-Animated-Text-Input.css'
 
 function SearchAndResultPage() {
 
@@ -76,19 +77,28 @@ function SearchAndResultPage() {
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                 <a class="navbar-brand" href="/">Home</a>
+                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                 </button>
+                </button>
                 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    
+                {/* <div class="collapse navbar-collapse" id="navbarSupportedContent">   
+
                     <form class="d-flex" >
-                    <input class="form-control me-2" type="search" onChange={updateSearch} value={searchTerm}  placeholder="Search" aria-label="Search"/>
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
+                        <input class="form-control me-2" type="search" onChange={updateSearch} value={searchTerm}  placeholder="Search" aria-label="Search"/>
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>         
+                </div> */}
                 </div>
             </nav>
+
+            <div class="d-flex justify-content-center h-100">
+                <div class="searchbar">
+                    <input class="search_input" type="search" onChange={updateSearch} value={searchTerm}  placeholder="Search..." />
+                    <a class="search_icon" href=""><i class="fas fa-search"></i></a>
+                </div>
+            </div>
+            
 
             <div class="container">
                 <div class="row">
