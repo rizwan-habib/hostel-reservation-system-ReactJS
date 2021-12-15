@@ -1,7 +1,7 @@
 import { useHistory } from "react-router";
 import './css/Contact-Form-Clean.css'
 import NavBackResults from "./NavBackResults";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import {useLocation} from 'react-router-dom';
 
@@ -29,10 +29,19 @@ function RoomsAndBeds() {
 
     }
 
-
+    
+    
+    useEffect(() => {
+        setHostelName(location.state.hostelName);
+        setHostelAddress(location.state.address);
+        setHostelId(location.state.id);
+        // Run! Like go get some data from an API.
+      }, []);
+    
     
 
     function handleSubmit(e) {
+        
         
         e.preventDefault();
         const user = {
@@ -71,7 +80,7 @@ function RoomsAndBeds() {
        <div>
            <NavBackResults/>
             <section class="contact-clean">
-                <span>{roomNo}</span>
+                {console.log(hostelName,hostelID,address)}
                 <form onSubmit={handleSubmit} >
                     <h2 class="text-center">Select Room and Bed </h2>
                     <div class="mb-3">

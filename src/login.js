@@ -18,16 +18,8 @@ function LoginPage() {
   const [userName, setUserName] = useState("");
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
-
   const [data, setData] = useState([]);
   
-  // useEffect(() => {
-  //   axios.get(`http://localhost:8000/login`)
-  //     .then(res => {
-  //       console.log(res);
-  //     })
-  // }, []);
-
 
   
   function handleSubmit(event) {
@@ -70,9 +62,9 @@ function LoginPage() {
         {
           history.push(
             {
-              pathname:"/hostelMain",
+              pathname:"/SearchAndResults",
               state: { username: userName, data : result } 
-            }
+            }  
           );
         }
         else{

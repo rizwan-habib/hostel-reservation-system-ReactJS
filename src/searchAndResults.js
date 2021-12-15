@@ -95,7 +95,7 @@ function SearchAndResultPage() {
                 
                 {    
                        filteredNames.map((val,index) => (
-                            !val || <Card title= {val.hostelName} address={val.address} id ={val.hostelID} rooms= {val.rooms}  />
+                            !val || <Card hostelName= {val.hostelName} address={val.address} id ={val.hostelID} rooms= {val.rooms}  />
                        )) 
                 }  
                     
