@@ -18,7 +18,7 @@ function HostelMain() {
             <div>
               {console.log(location)}
                <header class="header-blue">
-               <NavHostelMain  data = {location.state}  />
+                <NavHostelMain  data = {location.state}  />
                 <HeaderHostelMain/>
                 </header>     
             </div>
