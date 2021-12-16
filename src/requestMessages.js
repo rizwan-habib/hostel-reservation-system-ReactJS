@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import ReqCards from "./ReqCards";
+import { setConstantValue } from "typescript";
 
 function RequestMessages() {
     const history = useHistory();
@@ -17,6 +18,7 @@ function RequestMessages() {
     //data which will create cards and deal requests
     const[data,setData] =useState([]);
 
+    const[state,setState] =useState([]);
 
     function handleSubmit(e) {
     e.preventDefault();
@@ -34,11 +36,47 @@ function RequestMessages() {
         // setNames(Names);
         // setCnics(Cnics);
         // console.log(Names);
-        setData(location.state.data.data); 
-        // console.log("name:",location.state.data.data[0].name);
-        console.log("data:",location.state.data.data);
-        // console.log("hostelLogin:",location.state.data.username);
+        
+        setState(location.state);
         setHostelLogin(location.state.data.username);
+        console.log(location.state.data.username);
+        const user = {
+            "hostelLogin": location.state.data.username
+        };
+    
+        let result =  false;
+        console.log(user); 
+        axios.post(`http://localhost:8001/getRequests`,user)
+        .then(res => {
+            console.log(res.data);
+            result = res.data;
+            setData(result);
+
+            if(result)
+            {
+                // alert("accept");  
+                console.log(result);
+              history.push(
+                {
+                  pathname:"/requestMessages",
+                  state: state 
+                }  
+              );
+            }
+            else{
+              alert("Not Found");
+              console.log("error");
+            }
+    
+    
+    
+          }
+        )
+        .catch(err => {
+          // Do something for an error here
+          console.log("Error Reading data " + err);
+        });
+        
 
     }, []);
 
@@ -47,6 +85,8 @@ function RequestMessages() {
        <div>
            <NavHostelMain/>
            <div class="container">
+               
+               {/* {} */}
                 <div class="row">
                 {data.map(
                     (val, index) =>
@@ -56,7 +96,9 @@ function RequestMessages() {
                         cnic={val.cnic}
                         roomNo={val.request.roomNo}
                         hostelLogin={hostelLogin}
+                        data={data}
                         state ={location.state}
+
                        
                         />
                     )

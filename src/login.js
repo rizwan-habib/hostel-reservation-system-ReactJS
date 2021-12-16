@@ -40,34 +40,18 @@ function LoginPage() {
     axios.post(`http://localhost:8001/login`,user)
     .then(res => {
         
-        // result = res.data;
-        // setData(result);
-        // if(result.type=="resident")
-        // {
-        //   history.push(
-        //     {
-        //       pathname:"/SearchAndResults",
-        //       state: { username: userName, data : result} 
-        //     }  
-        //   );
-        // }
-        // else if(result.type=="hostel")
-        // {
-        //   history.push(
-        //     {
-        //       pathname:"/hostelMain",
-        //       state: { username: userName, data : result } 
-        //     }  
-        //   );
-        // }
-        // else{
-        //   alert("Not Found");
-        //   console.log("error");
-        // }
-
         result = res.data;
         setData(result);
-        if(result)
+        if(result.type=="resident")
+        {
+          history.push(
+            {
+              pathname:"/SearchAndResults",
+              state: { username: userName, data : result} 
+            }  
+          );
+        }
+        else if(result.type=="hostel")
         {
           history.push(
             {
@@ -80,6 +64,22 @@ function LoginPage() {
           alert("Not Found");
           console.log("error");
         }
+
+        // result = res.data;
+        // setData(result);
+        // if(result)
+        // {
+        //   history.push(
+        //     {
+        //       pathname:"/hostelMain",
+        //       state: { username: userName, data : result } 
+        //     }  
+        //   );
+        // }
+        // else{
+        //   alert("Not Found");
+        //   console.log("error");
+        // }
 
 
 

@@ -16,7 +16,7 @@ function DelHostel() {
     
 
     useEffect(() => {
-        // console.log(location.state.data.data);
+        console.log(location.state.data);
            
         setLogin(location.state.data.username);
             // Run! Like go get some data from an API.
@@ -32,9 +32,9 @@ function DelHostel() {
     function handleSubmit(e) {
         e.preventDefault();
         
-        let ownerObject = location.state.data.data.filter((val )=>(val.login === location.state.data.username ))
-        console.log(ownerObject[0].password);
-        if(ownerObject[0].password===password)
+        // let ownerObject = location.state.data.filter((val )=>(val.login === location.state.data.username ))
+        // console.log(ownerObject[0].password);
+        if(true)
         {
             const user = {
                 "hostelLogin":login

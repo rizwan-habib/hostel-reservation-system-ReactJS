@@ -1,5 +1,6 @@
 import { useHistory } from "react-router";
 import { useState } from "react";
+import { useEffect } from "react";
 import UserProfile from './userProfile';
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -14,7 +15,14 @@ function ReqCards(props) {
     const [state,setState] = useState([]);
     
 
+    useEffect(() => {
+      // Run! Like go get some data from an API.
 
+      setName(props.name);
+      setRoomNo(props.roomNo);
+      setHostelLogin(props.hostelLogin);
+    }
+    , []);
 
 
     function handleChange(){
@@ -57,10 +65,11 @@ function ReqCards(props) {
         "status":status,
         "roomNo":roomNo
         };
+        console.log(user);
 
     let result =  false;
 
-    axios.post(`http://localhost:8001/login`,user)
+    axios.post(`http://localhost:8001/sendResponse`,user)
     .then(res => {
         
         result = res.data;
@@ -70,7 +79,7 @@ function ReqCards(props) {
             alert("accept");  
           history.push(
             {
-              pathname:"/requestMessages",
+              pathname:"/login",
               state: state 
             }  
           );
@@ -87,6 +96,12 @@ function ReqCards(props) {
     .catch(err => {
       // Do something for an error here
       console.log("Error Reading data " + err);
+      history.push(
+        {
+          pathname:"/login",
+          state: state 
+        }  
+      )
     });
        
 
@@ -108,8 +123,9 @@ function ReqCards(props) {
                             <p class="card-text"  >{"CNIC :"+ props.cnic}</p>
                             <div class="mb-3">
                                 <input type="hidden" id="hostelLogin" name="hostelLogin" value={props.hostelLogin} />
-                                <input type="hidden" id="roomNo" name="roomNo" value={props.roomNo} />    
-                                <input type="hidden" id="name" name="Name" value={props.name} />                      
+                                <input type="hidden" id="roomNo" name="roomNo" value={props.roomNo} />
+                                {console.log(props.roomNo)}    
+                                <input type="hidden" id="name" name="Name" value={props.data.username} />                      
                                 <input type="hidden" id="cnic" name="CNIC" value={props.cnic} />
                                 <input type="hidden" id="state" name="state" value={props.state} />                       
                                 <select id="status" onChange={handleChange} value={status} class="form-control"  placeholder="Accept or Reject" >

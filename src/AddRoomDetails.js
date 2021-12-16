@@ -34,7 +34,7 @@ function AddRoomDetails() {
     }
     
     useEffect(() => {
-      console.log(location.state.data.username);  
+      console.log(location.state);  
       setLogin(location.state.data.username);
           // Run! Like go get some data from an API.
     }, []);

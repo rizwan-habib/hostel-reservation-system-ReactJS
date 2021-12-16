@@ -7,18 +7,19 @@ function HostelMain() {
     const history = useHistory();
     const location = useLocation();
 
-    function handleSubmit(e) {
-    e.preventDefault();
-    // history.push('/RoomsAndBeds');
-    }
+    // function handleSubmit(e) {
+    // e.preventDefault();
+    // // history.push('/RoomsAndBeds');
+    // }
 
 
 
     return (  
             <div>
-              {console.log(location)}
+              {location.state.data.username}
+              {/* {console.log(location)} */}
                <header class="header-blue">
-                <NavHostelMain  data = {location.state}  />
+                <NavHostelMain  state = {location.state}  />
                 <HeaderHostelMain/>
                 </header>     
             </div>

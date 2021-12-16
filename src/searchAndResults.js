@@ -22,7 +22,7 @@ function SearchAndResultPage() {
 
   useEffect(() => {
     const user = {
-      hostelName: searchTerm,
+      hostelName: searchTerm
     };
 
     let result = false;
