@@ -47,7 +47,7 @@ function SetupProfilePage() {
     
     let result =  false;
 
-    axios.post(`http://localhost:8008/login`,user)
+    axios.post(`http://localhost:8001/setUpProfile`,user)
     .then(res => {
         console.log(res);
         //data message now in result
@@ -62,12 +62,13 @@ function SetupProfilePage() {
         //   console.log("error");
         // }
         
-        result =res.data.message;
-        if(result)
+        result =res.data;
+        if(result=="success")
         {
           history.push('/login');
         }
         else{
+          alert("user already exist");
           console.log("error");
         }
 

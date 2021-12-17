@@ -66,7 +66,7 @@ function RegisterHostelPage() {
           
           let result =  false;
       
-          axios.post(`http://localhost:8008/enterHostelDetails`,user)
+          axios.post(`http://localhost:8001/enterHostelDetails`,user)
           .then(res => {
               console.log(res);
               //data message now in result

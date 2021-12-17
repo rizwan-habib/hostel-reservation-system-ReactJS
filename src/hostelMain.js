@@ -16,7 +16,7 @@ function HostelMain() {
 
     return (  
             <div>
-              {location.state.data.username}
+              {/* {location.state.data.username} */}
               {/* {console.log(location)} */}
                <header class="header-blue">
                 <NavHostelMain  state = {location.state}  />
