@@ -42,7 +42,7 @@ function LoginPage() {
         
         result = res.data;
         setData(result);
-        if(result.type=="resident")
+        if(result.type==="resident")
         {
           history.push(
             {

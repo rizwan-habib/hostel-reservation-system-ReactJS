@@ -6,6 +6,14 @@ import axios from "axios";
 import { useHistory } from "react-router";
 import { useLocation } from "react-router-dom";
 import "./css/Growing-Search-Bar-Animated-Text-Input.css";
+import "./fonts/fa-brands-400.eot";
+import "./fonts/fa-brands-400.svg";
+import "./fonts/fa-brands-400.ttf";
+import "./fonts/fa-brands-400.woff";
+import "./fonts/fa-regular-400.svg";
+import "./fonts/fa-solid-900.svg";
+import "./fonts/fontawesome-all.min.css"
+
 
 function SearchAndResultPage() {
   const location = useLocation();
@@ -27,6 +35,7 @@ function SearchAndResultPage() {
 
     let result = false;
 
+     
     axios
       .post(`http://localhost:8001/searchHostel`, user)
       .then((res) => {
@@ -98,24 +107,41 @@ function SearchAndResultPage() {
                         <input class="form-control me-2" type="search" onChange={updateSearch} value={searchTerm}  placeholder="Search" aria-label="Search"/>
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>         
-                </div> */}
+          </div> */}
         </div>
       </nav>
-
-      <div class="d-flex justify-content-center h-100">
-        <div class="searchbar">
-          <input
-            class="search_input"
-            type="search"
-            onChange={updateSearch}
-            value={searchTerm}
-            placeholder="Search..."
-          />
-          <a class="search_icon" href="">
-            <i class="fas fa-search"></i>
-          </a>
+      
+      <div
+      class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white"
+      style={{backgroundImage:`url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}>
+      
+        <h1 class="mb-3 h2">Search the best hostel in town</h1>
+                
+        <div class="d-flex justify-content-center h-100">
+          <div class="searchbar">
+            <input
+              class="search_input"
+              type="search"
+              onChange={updateSearch}
+              value={searchTerm}
+              placeholder="Search..."
+            />
+            <a class="search_icon" href="">
+              <i class="fas fa-search"></i>
+            </a>
+          </div>
         </div>
-      </div>
+
+        <p>
+        What are you waiting for?   
+        Search the best hostels in town,based on their ratings and customer's experience.<br/>
+        36,000 properties, 178 countries • Over 13 million verified guest reviews • 24/7 customer service
+        </p>          
+
+
+      </div>                  
+
+      
 
       <div class="container">
         <div class="row">
